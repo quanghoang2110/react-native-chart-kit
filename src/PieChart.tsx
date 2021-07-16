@@ -17,6 +17,7 @@ export interface PieChartProps extends AbstractChartProps {
   hasLegend?: boolean;
   style?: Partial<ViewStyle>;
   avoidFalseZero?: boolean;
+  onPress: (index: number, x: number, y: number) => void;
 }
 
 type PieChartState = {};
@@ -70,7 +71,17 @@ class PieChart extends AbstractChart<PieChartProps, PieChartState> {
 
       return (
         <G key={Math.random()}>
-          <Path d={c.sector.path.print()} fill={c.item.color} />
+          <Path
+            onPress={({ nativeEvent }) =>
+              this.props.onPress(
+                i,
+                nativeEvent.locationX,
+                nativeEvent.locationY
+              )
+            }
+            d={c.sector.path.print()}
+            fill={c.item.color}
+          />
           {hasLegend ? (
             <Rect
               width="16px"

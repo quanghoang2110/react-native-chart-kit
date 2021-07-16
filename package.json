@@ -1,6 +1,6 @@
 {
   "name": "@starling-tech/react-native-chart-kit",
-  "version": "6.11.1",
+  "version": "6.11.2",
   "devDependencies": {
     "@types/react": "^16.9.38",
     "@types/react-native": "^0.62.13",
@@ -40,8 +40,7 @@
     "ios": "expo start --ios",
     "test": "jest",
     "build": "tsc",
-    "dev": "tsc --watch",
-    "prepublish": "yarn build"
+    "dev": "tsc --watch"
   },
   "jest": {
     "preset": "jest-expo"
