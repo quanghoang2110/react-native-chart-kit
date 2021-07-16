@@ -57,6 +57,8 @@ export interface StackedBarChartProps extends AbstractChartProps {
   verticalLabelsHeightPercentage?: number;
 
   formatYLabel?: (yLabel: string) => string;
+
+  onPress:(index:number, x, y)=>void;
 }
 
 type StackedBarChartState = {};
@@ -122,6 +124,7 @@ class StackedBarChart extends AbstractChart<
 
         ret.push(
           <Rect
+          onPress={(e)=>_this.props.onPress(i,xC,e.nativeEvent.locationY)}
             key={Math.random()}
             x={xC}
             y={y}
