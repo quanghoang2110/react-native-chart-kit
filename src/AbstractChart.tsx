@@ -274,15 +274,43 @@ class AbstractChart<
       fac = 0.71;
     }
 
+    let lblLength = labels.length;
+
     return labels.map((label, i) => {
       if (hidePointsAtIndex.includes(i)) {
         return null;
       }
 
+      let extra = 0;
+      if (stackedBar) {
+        if (lblLength > 20) {
+          extra = i < 20 ? i - 8 : 0;
+        } else if (lblLength > 15) {
+          if (i < 8) {
+            extra = i - 8;
+          } else if (i < 15) {
+            extra = i - 15;
+          } else {
+            extra = i - 20;
+          }
+        } else if (lblLength > 10) {
+          if (i < 8) {
+            extra = i - 8;
+          } else {
+            extra = i - 12;
+          }
+        } else if (lblLength > 5) {
+          extra = i < 10 ? i - 8 : 0;
+        } else {
+          extra = i < 10 ? i - 5 : 0;
+        }
+      }
+
       const x =
         (((width - paddingRight) / labels.length) * i +
           paddingRight +
-          horizontalOffset) *
+          horizontalOffset +
+          extra) *
         fac;
 
       const y =
